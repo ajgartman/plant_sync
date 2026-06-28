@@ -1,0 +1,11 @@
+:root {
+  --bs-primary: #1abc9c;
+  --bs-secondary: #0a2540;
+  --bs-dark: #0a2540;
+  --bs-body-bg: #e8edf1;
+  --bs-link-color: #2980b9;
+}
+
+body {
+  background-color: var(--bs-body-bg);
+}
