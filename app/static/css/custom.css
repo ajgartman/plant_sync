@@ -1,11 +1,190 @@
 :root {
   --bs-primary: #1abc9c;
+  --bs-primary-rgb: 26, 188, 156;
   --bs-secondary: #0a2540;
+  --bs-secondary-rgb: 10, 37, 64;
   --bs-dark: #0a2540;
-  --bs-body-bg: #e8edf1;
-  --bs-link-color: #2980b9;
+  --bs-body-bg: #eef2f5;
+  --bs-body-color: #1f2d3d;
+  --bs-link-color: #16a085;
+  --bs-link-hover-color: #0a2540;
+
+  --ps-primary-dark: #16a085;
+  --ps-surface: #ffffff;
+  --ps-border: #dde5ec;
+  --ps-shadow: 0 8px 24px rgba(10, 37, 64, 0.08);
+  --ps-shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.06);
 }
 
 body {
   background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background: var(--bs-secondary) !important;
+  box-shadow: var(--ps-shadow-sm);
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: #fff !important;
+}
+
+.navbar-brand img {
+  border-radius: 8px;
+}
+
+.navbar .btn {
+  --bs-btn-color: rgba(255, 255, 255, 0.85);
+  --bs-btn-border-color: rgba(255, 255, 255, 0.25);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--bs-primary);
+  --bs-btn-hover-border-color: var(--bs-primary);
+  --bs-btn-active-bg: var(--ps-primary-dark);
+  --bs-btn-active-border-color: var(--ps-primary-dark);
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.18s ease;
+}
+
+.navbar .btn:hover {
+  transform: translateY(-1px);
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) grayscale(1) brightness(1.6);
+}
+
+/* ---------- Hero / panels ---------- */
+.bg-light {
+  background-color: var(--ps-surface) !important;
+  border: 1px solid var(--ps-border);
+  box-shadow: var(--ps-shadow);
+}
+
+.display-5 {
+  color: var(--bs-secondary);
+  letter-spacing: -0.5px;
+}
+
+/* ---------- Buttons (general) ---------- */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.18s ease;
+}
+
+.btn-primary,
+.btn-secondary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: var(--ps-primary-dark);
+  --bs-btn-hover-border-color: var(--ps-primary-dark);
+  --bs-btn-active-bg: var(--ps-primary-dark);
+  --bs-btn-active-border-color: var(--ps-primary-dark);
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(26, 188, 156, 0.3);
+}
+
+/* ---------- Forms ---------- */
+.form-label {
+  font-weight: 600;
+  color: var(--bs-secondary);
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  display: block;
+  text-align: left;
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid var(--ps-border);
+  padding: 0.6rem 0.85rem;
+}
+
+.form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.18);
+}
+
+/* ---------- Tables ---------- */
+.table {
+  --bs-table-bg: var(--ps-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--ps-shadow-sm);
+}
+
+.table thead th {
+  background-color: var(--bs-secondary);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 0.9rem 1rem;
+}
+
+.table tbody td {
+  padding: 0.8rem 1rem;
+  vertical-align: middle;
+}
+
+.table caption {
+  caption-side: top;
+  font-weight: 600;
+  color: var(--bs-secondary);
+  padding: 0.5rem 0.25rem;
+}
+
+/* ---------- Alerts ---------- */
+.alert {
+  border: none;
+  border-left: 4px solid var(--bs-primary);
+  border-radius: 8px;
+  box-shadow: var(--ps-shadow-sm);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--bs-secondary);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 1.25rem 0;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 576px) {
+  .p-5 {
+    padding: 1.75rem !important;
+  }
+
+  .display-5 {
+    font-size: 1.9rem;
+  }
+
+  .navbar .btn {
+    width: 100%;
+    margin-bottom: 0.4rem;
+  }
 }

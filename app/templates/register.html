@@ -5,9 +5,9 @@
 {% block content %}
 
      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-6">
-            <div class="p-5 mb-2 bg-light rounded-4 text-center shadow-sm">
-                <h1>Register!</h1>
+        <div class="col-md-7 col-lg-5">
+            <div class="p-4 p-md-5 mb-2 bg-light rounded-4 shadow-sm">
+                <h1 class="text-center mb-4">Register!</h1>
                     <form method="POST" novalidate>
                         {{ form.csrf_token }}
                         {{ form.username.label(class="form-label") }}
@@ -16,8 +16,7 @@
                         {{ form.password(class="form-control") }}
                         {{ form.confirm_password.label(class="form-label") }}
                         {{ form.confirm_password(class="form-control") }}
-                        <br>
-                        {{ form.submit(class="btn btn-secondary") }}
+                        {{ form.submit(class="btn btn-primary w-100 mt-4") }}
                     </form>
             </div>
         </div>

@@ -13,29 +13,33 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-secondary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="My Logo" width="30">
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Plant Sync logo" width="32" height="32">
+                    <span>Plant Sync</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="btn btn-outline-secondary me-2" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                            <a class="btn btn-outline-secondary me-2 mb-1" aria-current="page" href="{{ url_for('index') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-secondary me-2 mb-1" aria-current="page" href="{{ url_for('dashboard') }}">Dashboard</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
                         {% if current_user.is_authenticated %}
-                            <li class="nav-button">
+                            <li class="nav-item">
                                 <a class="btn btn-outline-secondary" href="{{ url_for('logout') }}">Logout</a>
                             </li>
                         {% else %}
-                            <li class="nav-button">
-                                <a class="btn btn-outline-secondary me-2" href="{{ url_for('login') }}">Login</a>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary" href="{{ url_for('login') }}">Login</a>
                             </li>
-                            <li class="nav-button">
-                                <a class="btn btn-outline-secondary" href="{{ url_for('register') }}">Register</a>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -60,8 +64,9 @@
         </div>
     </main>
     <footer>
-        <div class="container">
-            <p>Made by Andrzej Gartman. 2026</p>
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-1">
+            <p>Made by Andrzej Gartman &middot; 2026</p>
+            <p>🌱 Plant Sync</p>
         </div>
     </footer>
 </body>
