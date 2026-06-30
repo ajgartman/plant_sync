@@ -10,8 +10,10 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
+    account_choices = [("contractor","Contractor"),("plant_management","Plant Management"),("admin","Admin")]
     username = StringField("Username", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")])
+    account_type = SelectField("Please select user type",choices=account_choices)
     submit = SubmitField("Login")
 

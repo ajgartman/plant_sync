@@ -12,13 +12,11 @@
 
         <div class="table-responsive">
             <table class="table align-middle mb-0">
-                <caption>List of users</caption>
                 <thead>
                 <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Second</th>
-                  <th scope="col">Third</th>
+                    {% for column in columns %}
+                  <th scope="col">{{ column }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
                 <tbody>

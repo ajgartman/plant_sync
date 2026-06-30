@@ -11,7 +11,6 @@ from flask_login import login_user, login_required, logout_user
 def load_user(user_id):
     return db.session.get(User, user_id)
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -30,7 +29,7 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = User(username=form.username.data, pw_hash=generate_password_hash(form.password.data))
+        new_user = User(username=form.username.data, pw_hash=generate_password_hash(form.password.data),account_type=form.account_type.data)
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
@@ -46,7 +45,6 @@ def logout():
     flash("Logged out successfully", "success")
     return redirect(url_for("index"))
 
-
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
@@ -54,4 +52,8 @@ def index():
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template("dashboard.html")
+
+    columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority"]
+
+
+    return render_template("dashboard.html",columns=columns)
