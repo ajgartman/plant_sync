@@ -2,7 +2,7 @@ from app import db
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import String
 from flask_login import UserMixin
-from datetime import datetime
+from datetime import date as dt_date
 
 
 class User(db.Model, UserMixin):
@@ -19,7 +19,7 @@ class Issues(db.Model):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     desc: Mapped[str] = mapped_column(String(150),index=True)
-    date: Mapped[datetime] = mapped_column(index=True,default=lambda:datetime.date())
+    date: Mapped[dt_date] = mapped_column(index=True,default=lambda:dt_date.today())
     submitted_by: Mapped[int] = mapped_column(index=True)
     completed_by: Mapped[int] = mapped_column(index=True)
     area: Mapped[int] = mapped_column(index=True)

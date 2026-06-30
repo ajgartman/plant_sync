@@ -78,6 +78,20 @@ body {
   letter-spacing: -0.5px;
 }
 
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 1.5rem;                    /* space between them */
+  margin-top: 1.5rem;
+}
+
+.card {
+  background: #ffffff;            /* same white as your hero */
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
 /* ---------- Buttons (general) ---------- */
 .btn {
   border-radius: 8px;

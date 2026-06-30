@@ -1,6 +1,6 @@
 from app import app, db, login_manager
-from app.forms import LoginForm, RegisterForm
-from app.models import User
+from app.forms import LoginForm, RegisterForm, IssueForm
+from app.models import User,Issues
 from flask import flash, url_for, redirect, render_template,request
 from sqlalchemy import select,func
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -53,7 +53,43 @@ def index():
 @login_required
 def dashboard():
 
+
+    # Fetching current data
+    issues = select(Issues)
+    result = db.session.scalars(issues).all()
+
+    for issue in result:
+        print(issue.date)
+
     columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority"]
 
 
-    return render_template("dashboard.html",columns=columns)
+    return render_template("dashboard.html",columns=columns,issues=result)
+
+
+@app.route("/add_issue",methods=["GET","POST"])
+@login_required
+def add_issue():
+    form = IssueForm()
+
+    if form.validate_on_submit():
+        desc = form.desc.data
+        submitted_by = form.submitted_by.data
+        completed_by = form.completed_by.data
+        area = form.area.data
+        status = form.status.data
+        priority = form.priority.data
+
+        issue = Issues(desc=desc,
+                      submitted_by=submitted_by,
+                      completed_by=completed_by,
+                      area=area,
+                      status=status,
+                      priority=priority)
+
+        db.session.add(issue)
+        db.session.commit()
+
+        flash("Issue added successfully!",category="success")
+        return redirect(url_for("dashboard"))
+    return render_template("add_issue.html",form=form)

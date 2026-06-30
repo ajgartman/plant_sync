@@ -8,6 +8,7 @@
             <p class="col-md-8 mx-auto fs-5 text-muted mb-0">
                 A live overview of issues logged on site.
             </p>
+                <a href="{{ url_for('add_issue') }}" class="btn btn-primary btn-lg px-4 mt-2">Add New Issue</a>
         </div>
 
         <div class="table-responsive">
@@ -20,9 +21,18 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for issue in issues %}
                     <tr>
-                      <td colspan="4" class="text-center text-muted py-4">No issues to display yet.</td>
+                        <td>{{ issue.id }}</td>
+                        <td>{{ issue.desc }}</td>
+                        <td>{{ issue.date }}</td>
+                        <td>{{ issue.submitted_by }}</td>
+                        <td>{{ issue.completed_by }}</td>
+                        <td>{{ issue.area }}</td>
+                        <td>{{ issue.status }}</td>
+                        <td>{{ issue.priority }}</td>
                     </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

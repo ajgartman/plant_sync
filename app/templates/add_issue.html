@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="p-4 p-md-5 mb-2 bg-light rounded-4 shadow-sm">
+                <h1 class="text-center mb-4">Add New Issue</h1>
+                <form method="POST" novalidate>
+                    {{ form.csrf_token }}
+                    {{ form.desc.label(class="form-label") }}
+                    {{ form.desc(class="form-control") }}
+                    {{ form.submitted_by.label(class="form-label") }}
+                    {{ form.submitted_by(class="form-control") }}
+                    {{ form.completed_by.label(class="form-label") }}
+                    {{ form.completed_by(class="form-control") }}
+                    {{ form.area.label(class="form-label") }}
+                    {{ form.area(class="form-control") }}
+                    {{ form.status.label(class="form-label") }}
+                    {{ form.status(class="form-control") }}
+                    {{ form.priority.label(class="form-label") }}
+                    {{ form.priority(class="form-control") }}
+
+                    {{ form.submit(class="btn btn-primary w-100 mt-4") }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
