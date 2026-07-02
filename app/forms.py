@@ -28,3 +28,15 @@ class IssueForm(FlaskForm):
     status = SelectField("Current status of the issue",choices=status_selection,validators=[DataRequired()])
     priority = SelectField("Priority of the Issue",validators=[DataRequired()],choices=priority_selection)
     submit = SubmitField("Add")
+
+
+class AreaForm(FlaskForm):
+    name = StringField("Area Name",validators=[DataRequired()])
+    desc = TextAreaField("Area description", validators=[DataRequired()])
+    submit = SubmitField("Add")
+
+
+class IssueStatusForm(FlaskForm):
+    status_selection = [("open", "Open"), ("in_progress", "In Progress"), ("under_review", "Under Review"),
+                        ("closed", "Closed")]
+    status = SelectField("Filter by status:", choices=status_selection, validators=[DataRequired()])

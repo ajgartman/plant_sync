@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Management{% endblock %}
+
+{% block content %}
+        <div class="p-4 p-md-2 mb-2 bg-light rounded-4 text-center">
+            <h1 class="display-5 fw-bold">Management Panel</h1>
+            <p class="col-md-8 mx-auto fs-5 text-muted">
+                Human resourcing and equipment information.
+            </p>
+
+        <div class="card-row">
+            <a href="{{ url_for('add_issue') }}" class="btn btn-primary btn-lg px-4 mt-2">Add New Contractor</a>
+            <a href="{{ url_for('add_issue') }}" class="btn btn-primary btn-lg px-4 mt-2">Add New Company</a>
+            <a href="{{ url_for('add_area') }}" class="btn btn-primary btn-lg px-4 mt-2">Add New Plant Area</a>
+        </div>
+
+        </div>
+
+{% endblock %}

@@ -25,3 +25,21 @@ class Issues(db.Model):
     area: Mapped[int] = mapped_column(index=True)
     status: Mapped[str] = mapped_column(index=True)
     priority: Mapped[str] = mapped_column(index=True)
+
+
+class Area(db.Model):
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[int] = mapped_column(index=True)
+    desc: Mapped[str] = mapped_column(index=True)
+
+
+class Company(db.Model):
+
+    id: Mapped[int] = mapped_column(primary_key = True)
+    name: Mapped[str] = mapped_column(index=True)
+    type: Mapped[str] = mapped_column(index=True)
+    email: Mapped[str] = mapped_column(index=True)
+    phone: Mapped[str] = mapped_column(index=True)
+
+

@@ -11,6 +11,15 @@
                 <a href="{{ url_for('add_issue') }}" class="btn btn-primary btn-lg px-4 mt-2">Add New Issue</a>
         </div>
 
+        <div class="col-md-3">
+        <form>
+            {{ form.csrf_token }}
+            {{ form.status.label(class="form-label") }}
+            {{ form.status(class_="form-select border",onchange="this.form.submit()") }}
+        </form>
+
+        </div>
+        <br>
         <div class="table-responsive">
             <table class="table align-middle mb-0">
                 <thead>
@@ -29,8 +38,8 @@
                         <td>{{ issue.submitted_by }}</td>
                         <td>{{ issue.completed_by }}</td>
                         <td>{{ issue.area }}</td>
-                        <td>{{ issue.status }}</td>
-                        <td>{{ issue.priority }}</td>
+                        <td>{{ issue.status.replace("_"," ").title()}}</td>
+                        <td>{{ issue.priority.capitalize() }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -14,6 +14,8 @@
   --ps-border: #dde5ec;
   --ps-shadow: 0 8px 24px rgba(10, 37, 64, 0.08);
   --ps-shadow-sm: 0 2px 8px rgba(10, 37, 64, 0.06);
+  --ps-primary: #14b8a6;
+  --ps-primary-rgb: 20, 184, 166;
 }
 
 body {
@@ -92,6 +94,13 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+.card-row .btn {
+    padding: 1.25rem 1rem;   /* height */
+    font-size: 1.1rem;       /* text size */
+}
+
+
+
 /* ---------- Buttons (general) ---------- */
 .btn {
   border-radius: 8px;
@@ -137,6 +146,17 @@ body {
   border-color: var(--bs-primary);
   box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.18);
 }
+
+.form-select {
+  border: 1px solid var(--ps-border);
+  border-radius: 8px;
+}
+
+.form-select:focus {
+  border-color: var(--ps-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--ps-primary-rgb), 0.25);
+}
+
 
 /* ---------- Tables ---------- */
 .table {

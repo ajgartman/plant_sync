@@ -1,6 +1,6 @@
 from app import app, db, login_manager
-from app.forms import LoginForm, RegisterForm, IssueForm
-from app.models import User,Issues
+from app.forms import LoginForm, RegisterForm, IssueForm, AreaForm,IssueStatusForm
+from app.models import User,Issues,Area
 from flask import flash, url_for, redirect, render_template,request
 from sqlalchemy import select,func
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -49,11 +49,11 @@ def logout():
 def index():
     return render_template("index.html")
 
-@app.route("/dashboard")
+@app.route("/dashboard",methods=["GET","POST"])
 @login_required
 def dashboard():
 
-
+    issueStatusForm = IssueStatusForm()
     # Fetching current data
     issues = select(Issues)
     result = db.session.scalars(issues).all()
@@ -64,7 +64,7 @@ def dashboard():
     columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority"]
 
 
-    return render_template("dashboard.html",columns=columns,issues=result)
+    return render_template("dashboard.html",columns=columns,issues=result,form=issueStatusForm)
 
 
 @app.route("/add_issue",methods=["GET","POST"])
@@ -93,3 +93,31 @@ def add_issue():
         flash("Issue added successfully!",category="success")
         return redirect(url_for("dashboard"))
     return render_template("add_issue.html",form=form)
+
+
+@app.route("/management",methods=["GET","POST"])
+@login_required
+def management():
+
+    return render_template("management.html")
+
+@app.route("/add_area",methods=["GET","POST"])
+@login_required
+def add_area():
+
+    form = AreaForm()
+
+    if form.validate_on_submit():
+        name = form.name.data
+        desc = form.desc.data
+
+        area = Area(name=name,
+                    desc=desc)
+
+        db.session.add(area)
+        db.session.commit()
+
+        flash("Area added successfully!",category="success")
+        return redirect(url_for("management"))
+
+    return render_template("add_area.html",form=form)

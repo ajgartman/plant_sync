@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Add Area{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <div class="p-4 p-md-5 mb-2 bg-light rounded-4 shadow-sm">
+                <h1 class="text-center mb-4">Add New Plant Area</h1>
+                <form method="POST" novalidate>
+                    {{ form.csrf_token }}
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                    {{ form.desc.label(class="form-label") }}
+                    {{ form.desc(class="form-control") }}
+                    {{ form.submit(class="btn btn-primary w-100 mt-4") }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
