@@ -55,11 +55,22 @@ def dashboard():
 
     issueStatusForm = IssueStatusForm()
     # Fetching current data
-    issues = select(Issues)
+    user_filter = request.args.get("status")
+
+    if user_filter == "open":
+        issues = select(Issues).where(Issues.status == "open")
+    elif user_filter == "in_progress":
+        issues = select(Issues).where(Issues.status == "in_progress")
+    elif user_filter == "under_review":
+        issues = select(Issues).where(Issues.status == "under_review")
+    elif user_filter == "closed":
+        issues = select(Issues).where(Issues.status == "closed")
+    else:
+        issues = select(Issues)
+
     result = db.session.scalars(issues).all()
 
-    for issue in result:
-        print(issue.date)
+    issueStatusForm.status.data = user_filter
 
     columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority"]
 

@@ -37,6 +37,6 @@ class AreaForm(FlaskForm):
 
 
 class IssueStatusForm(FlaskForm):
-    status_selection = [("open", "Open"), ("in_progress", "In Progress"), ("under_review", "Under Review"),
+    status_selection = [("all","All"),("open", "Open"), ("in_progress", "In Progress"), ("under_review", "Under Review"),
                         ("closed", "Closed")]
     status = SelectField("Filter by status:", choices=status_selection, validators=[DataRequired()])
