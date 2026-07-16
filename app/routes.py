@@ -1,7 +1,7 @@
 from app import app, db, login_manager
 from app.forms import LoginForm, RegisterForm, IssueForm, AreaForm,IssueStatusForm
 from app.models import User,Issues,Area
-from flask import flash, url_for, redirect, render_template,request
+from flask import flash, url_for, redirect, render_template,request, session
 from sqlalchemy import select,func
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import login_user, login_required, logout_user
@@ -72,7 +72,7 @@ def dashboard():
 
     issueStatusForm.status.data = user_filter
 
-    columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority"]
+    columns = ["ID","Desc.","Date","Submitted By","Completed By","Area","Status","Priority","Details"]
 
 
     return render_template("dashboard.html",columns=columns,issues=result,form=issueStatusForm)
@@ -132,3 +132,18 @@ def add_area():
         return redirect(url_for("management"))
 
     return render_template("add_area.html",form=form)
+
+
+@app.route("/inspect_issue/<int:issue_id>",methods=["POST","GET"])
+@login_required
+def inspect_issue(issue_id):
+
+    print(issue_id)
+    # Getting issue object
+    print("Printing session object...")
+
+    issue = select(Issues).where(Issues.id == issue_id)
+    issue = db.session.scalar(issue)
+
+
+    return render_template("issue.html",issue=issue)

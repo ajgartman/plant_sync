@@ -15,7 +15,7 @@
         <form>
             {{ form.csrf_token }}
             {{ form.status.label(class="form-label") }}
-            {{ form.status(class_="form-select border",onchange="this.form.submit()") }}
+            {{ form.status(class="form-select border",onchange="this.form.submit()") }}
         </form>
 
         </div>
@@ -40,6 +40,9 @@
                         <td>{{ issue.area }}</td>
                         <td>{{ issue.status.replace("_"," ").title()}}</td>
                         <td>{{ issue.priority.capitalize() }}</td>
+                        <td>
+                            <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}" class="btn btn-primary">Details</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
