@@ -85,14 +85,14 @@ def add_issue():
 
     if form.validate_on_submit():
         desc = form.desc.data
-        submitted_by = form.submitted_by.data
+        submitted_by = session["user_id"]
         completed_by = form.completed_by.data
         area = form.area.data
         status = form.status.data
         priority = form.priority.data
 
         issue = Issues(desc=desc,
-                      submitted_by=submitted_by,
+                      submitted_by_id=submitted_by,
                       completed_by=completed_by,
                       area=area,
                       status=status,
@@ -138,9 +138,6 @@ def add_area():
 @login_required
 def inspect_issue(issue_id):
 
-    print(issue_id)
-    # Getting issue object
-    print("Printing session object...")
 
     issue = select(Issues).where(Issues.id == issue_id)
     issue = db.session.scalar(issue)

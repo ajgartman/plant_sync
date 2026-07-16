@@ -3,6 +3,14 @@
 {% block title %}Main Page{% endblock %}
 
 {% block content %}
+    {# Priority badge colours — kept in step with issue.html #}
+    {% set priority_class = {
+        "low": "bg-success",
+        "medium": "bg-secondary",
+        "high": "bg-warning text-dark",
+        "critical": "bg-danger"
+    } %}
+
         <div class="p-4 p-md-5 mb-4 bg-light rounded-4 text-center">
             <h1 class="display-5 fw-bold">Current Issues</h1>
             <p class="col-md-8 mx-auto fs-5 text-muted mb-0">
@@ -35,11 +43,15 @@
                         <td>{{ issue.id }}</td>
                         <td>{{ issue.desc }}</td>
                         <td>{{ issue.date }}</td>
-                        <td>{{ issue.submitted_by }}</td>
+                        <td>{{ issue.submitted_by.username.capitalize() }}</td>
                         <td>{{ issue.completed_by }}</td>
                         <td>{{ issue.area }}</td>
                         <td>{{ issue.status.replace("_"," ").title()}}</td>
-                        <td>{{ issue.priority.capitalize() }}</td>
+                        <td>
+                            <span class="badge rounded-pill {{ priority_class.get(issue.priority, 'bg-secondary') }} px-3 py-2">
+                                {{ issue.priority.capitalize() }}
+                            </span>
+                        </td>
                         <td>
                             <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}" class="btn btn-primary">Details</a>
                         </td>

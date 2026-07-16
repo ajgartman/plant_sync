@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block title %}Add Issue{% endblock %}
 
@@ -10,18 +11,12 @@
                 <h1 class="text-center mb-4">Add New Issue</h1>
                 <form method="POST" novalidate>
                     {{ form.csrf_token }}
-                    {{ form.desc.label(class="form-label") }}
-                    {{ form.desc(class="form-control") }}
-                    {{ form.submitted_by.label(class="form-label") }}
-                    {{ form.submitted_by(class="form-control") }}
-                    {{ form.completed_by.label(class="form-label") }}
-                    {{ form.completed_by(class="form-control") }}
-                    {{ form.area.label(class="form-label") }}
-                    {{ form.area(class="form-control") }}
-                    {{ form.status.label(class="form-label") }}
-                    {{ form.status(class="form-select") }}
-                    {{ form.priority.label(class="form-label") }}
-                    {{ form.priority(class="form-select") }}
+
+                    {{ render_field(form.desc) }}
+                    {{ render_field(form.completed_by) }}
+                    {{ render_field(form.area) }}
+                    {{ render_field(form.status, "form-select") }}
+                    {{ render_field(form.priority, "form-select") }}
 
                     {{ form.submit(class="btn btn-primary w-100 mt-4") }}
                 </form>

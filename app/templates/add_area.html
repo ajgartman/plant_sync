@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
 
 {% block title %}Add Area{% endblock %}
 
@@ -10,10 +11,8 @@
                 <h1 class="text-center mb-4">Add New Plant Area</h1>
                 <form method="POST" novalidate>
                     {{ form.csrf_token }}
-                    {{ form.name.label(class="form-label") }}
-                    {{ form.name(class="form-control") }}
-                    {{ form.desc.label(class="form-label") }}
-                    {{ form.desc(class="form-control") }}
+                    {{ render_field(form.name) }}
+                    {{ render_field(form.desc) }}
                     {{ form.submit(class="btn btn-primary w-100 mt-4") }}
                 </form>
             </div>

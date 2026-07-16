@@ -82,9 +82,10 @@ body {
 
 .card-row {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two equal columns */
-  gap: 1.5rem;                    /* space between them */
-  margin-top: 1.5rem;
+  /* fit as many tiles per row as will comfortably fit, then wrap */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .card {
@@ -94,9 +95,31 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
+/* Management panel tiles */
 .card-row .btn {
-    padding: 1.25rem 1rem;   /* height */
-    font-size: 1.1rem;       /* text size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 170px;
+  padding: 2rem 1.25rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  border-radius: 14px;
+}
+
+.card-row .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(var(--ps-primary-rgb), 0.35);
+}
+
+@media (max-width: 576px) {
+  .card-row .btn {
+    min-height: 120px;
+    font-size: 1.1rem;
+    padding: 1.5rem 1rem;
+  }
 }
 
 
@@ -155,6 +178,14 @@ body {
 .form-select:focus {
   border-color: var(--ps-primary);
   box-shadow: 0 0 0 0.25rem rgba(var(--ps-primary-rgb), 0.25);
+}
+
+/* Keep the error state visible on focus, instead of the teal focus ring
+   painting over it. */
+.form-control.is-invalid:focus,
+.form-select.is-invalid:focus {
+  border-color: var(--bs-form-invalid-border-color, #dc3545);
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.2);
 }
 
 

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField,FloatField,SelectField, TextAreaField, DateField, IntegerField
-from wtforms.validators import DataRequired, EqualTo, number_range
+from wtforms.validators import DataRequired, EqualTo, number_range, Optional
 
 
 class LoginForm(FlaskForm):
@@ -20,10 +20,10 @@ class RegisterForm(FlaskForm):
 class IssueForm(FlaskForm):
     status_selection = [("open","Open"),("in_progress","In Progress"),("under_review","Under Review"),("closed","Closed")]
     priority_selection = [("low","Low"),("medium","Medium"),("high","High"),("critical","Critical")]
-    desc = TextAreaField("Please provide description of the issue: ")
+    desc = TextAreaField("Please provide description of the issue: ",validators=[DataRequired()])
     # date = DateField("Raised on: ",format="%Y-%m-%d",validators=[DataRequired()])
-    submitted_by = IntegerField("Submitted By: ",validators=[DataRequired()])
-    completed_by = IntegerField("Completed By",validators=[DataRequired()])
+    # submitted_by = IntegerField("Submitted By: ",validators=[DataRequired()])
+    completed_by = IntegerField("Completed By",validators=[])
     area = IntegerField("ID of the area",validators=[DataRequired()])
     status = SelectField("Current status of the issue",choices=status_selection,validators=[DataRequired()])
     priority = SelectField("Priority of the Issue",validators=[DataRequired()],choices=priority_selection)

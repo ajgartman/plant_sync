@@ -1,0 +1,20 @@
+{# Renders one form field with its label and any validation errors.
+
+   Each field is wrapped in its own .mb-3 group so an error message stays
+   visually tied to the field it belongs to, rather than running into the
+   label of the next one.
+
+   Usage:
+     {% from "_formhelpers.html" import render_field %}
+     {{ render_field(form.desc) }}
+     {{ render_field(form.status, "form-select") }}
+#}
+{% macro render_field(field, control="form-control") %}
+    <div class="mb-3">
+        {{ field.label(class="form-label") }}
+        {{ field(class=control + (" is-invalid" if field.errors else "")) }}
+        {% for error in field.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+        {% endfor %}
+    </div>
+{% endmacro %}
