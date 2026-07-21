@@ -1,0 +1,55 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+ENV/
+
+# ---- Environment variables / secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ---- Database ----
+# Local SQLite database - each dev/deploy has its own
+app/data/*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# ---- Flask ----
+instance/
+.webassets-cache
+
+# ---- Testing / coverage ----
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# ---- Packaging ----
+build/
+dist/
+*.egg-info/
+
+# ---- IDE / editors ----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+desktop.ini
