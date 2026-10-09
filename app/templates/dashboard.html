@@ -54,9 +54,6 @@
                         </td>
                         <td>
                             <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}" class="btn btn-primary">Details</a>
-                            {% if can_manage %}
-                                <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}#update" class="btn btn-outline-secondary">Update</a>
-                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

@@ -61,20 +61,16 @@ def logout():
 @app.route("/", methods=["GET", "POST"])
 def index():
     status_counts = dict(
-        db.session.execute(select(Issues.status, func.count(Issues.id)).group_by(Issues.status)).all()
-    )
+        db.session.execute(select(Issues.status, func.count(Issues.id)).group_by(Issues.status)).all())
     issue_count = sum(status_counts.values())
     open_count = status_counts.get("open", 0)
     active_count = status_counts.get("in_progress", 0) + status_counts.get("under_review", 0)
     critical_count = db.session.scalar(
         select(func.count(Issues.id)).where(
-            Issues.priority == "critical", Issues.status != "closed"
-        )
-    ) or 0
+            Issues.priority == "critical", Issues.status != "closed")) or 0
     area_count = db.session.scalar(select(func.count(Area.id))) or 0
     recent_issues = db.session.scalars(
-        select(Issues).order_by(Issues.date.desc(), Issues.id.desc()).limit(5)
-    ).all()
+        select(Issues).order_by(Issues.date.desc(), Issues.id.desc()).limit(5)).all()
 
     return render_template(
         "index.html",
@@ -110,8 +106,7 @@ def dashboard():
         columns=columns,
         issues=result,
         form=issue_status_form,
-        can_manage=current_user.account_type in MANAGEMENT_ROLES,
-    )
+        can_manage=current_user.account_type in MANAGEMENT_ROLES)
 
 
 @app.route("/add_issue",methods=["GET","POST"])
@@ -156,7 +151,6 @@ def management():
 @login_required
 def add_area():
     management_required()
-
     form = AreaForm()
 
     if form.validate_on_submit():
