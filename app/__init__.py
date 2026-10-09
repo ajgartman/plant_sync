@@ -1,15 +1,16 @@
 from flask import Flask
+import click
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from jinja2 import StrictUndefined
-from flask_migrate import Migrate
+
 app = Flask(__name__)
 app.config.from_object(Config)
 app.jinja_env.undefined = StrictUndefined
 
 db = SQLAlchemy(app)
-migrate = Migrate(app,db)
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -20,3 +21,10 @@ def shell_context():
 app.shell_context_processor(shell_context)
 
 from app import routes
+
+
+@app.cli.command("init-db")
+def init_db():
+    """Create tables that do not exist yet."""
+    db.create_all()
+    click.echo("Database tables are ready.")

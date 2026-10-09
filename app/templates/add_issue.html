@@ -14,7 +14,12 @@
 
                     {{ render_field(form.desc) }}
                     {{ render_field(form.completed_by) }}
-                    {{ render_field(form.area) }}
+                    {% if form.area.choices %}
+                        {{ render_field(form.area, "form-select") }}
+                    {% else %}
+                        <p class="text-muted">Add a plant area before creating an issue.</p>
+                        <a class="btn btn-outline-primary" href="{{ url_for('add_area') }}">Add plant area</a>
+                    {% endif %}
                     {{ render_field(form.status, "form-select") }}
                     {{ render_field(form.priority, "form-select") }}
 

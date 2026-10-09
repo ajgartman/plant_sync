@@ -3,7 +3,7 @@
 {% block title %}Main Page{% endblock %}
 
 {% block content %}
-    {# Priority badge colours — kept in step with issue.html #}
+    {# Priority badge colours — kept in step with inspect_issue.html #}
     {% set priority_class = {
         "low": "bg-success",
         "medium": "bg-secondary",
@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-md-3">
-        <form>
+        <form method="GET">
             {{ form.csrf_token }}
             {{ form.status.label(class="form-label") }}
             {{ form.status(class="form-select border",onchange="this.form.submit()") }}
@@ -44,8 +44,8 @@
                         <td>{{ issue.desc }}</td>
                         <td>{{ issue.date }}</td>
                         <td>{{ issue.submitted_by.username.capitalize() }}</td>
-                        <td>{{ issue.completed_by }}</td>
-                        <td>{{ issue.area }}</td>
+                        <td>{{ issue.completed_by or "—" }}</td>
+                        <td>{{ issue.area.name }}</td>
                         <td>{{ issue.status.replace("_"," ").title()}}</td>
                         <td>
                             <span class="badge rounded-pill {{ priority_class.get(issue.priority, 'bg-secondary') }} px-3 py-2">
@@ -54,9 +54,19 @@
                         </td>
                         <td>
                             <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}" class="btn btn-primary">Details</a>
+                            {% if can_manage %}
+                                <a href="{{ url_for('inspect_issue',issue_id=issue.id) }}#update" class="btn btn-outline-secondary">Update</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
+                {% if not issues %}
+                    <tr>
+                        <td colspan="{{ columns|length }}" class="text-center text-muted py-4">
+                            No issues match this filter. Add an issue or choose another status.
+                        </td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>

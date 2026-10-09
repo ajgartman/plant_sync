@@ -122,6 +122,98 @@ body {
   }
 }
 
+/* ---------- Operations overview ---------- */
+.overview-hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(118deg, #0a2540 0%, #123b55 58%, #147d79 100%);
+  box-shadow: 0 14px 34px rgba(10, 37, 64, 0.16);
+}
+
+.overview-hero::after {
+  position: absolute;
+  top: -95px;
+  right: -55px;
+  width: 330px;
+  height: 330px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 38px rgba(255, 255, 255, 0.035), 0 0 0 78px rgba(255, 255, 255, 0.025);
+  content: "";
+  pointer-events: none;
+}
+
+.overview-hero > div { position: relative; z-index: 1; }
+.overview-eyebrow, .panel-eyebrow { font-size: 0.69rem; font-weight: 800; letter-spacing: 0.13em; }
+.overview-eyebrow { color: #78e0cf; }
+.overview-hero h1 { color: #fff; letter-spacing: -0.04em; }
+.overview-subtitle { max-width: 38rem; color: rgba(255, 255, 255, 0.72); }
+.overview-hero .btn-light { color: #0a2540; font-weight: 650; }
+
+.overview-stat, .overview-panel {
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid #e4ebf0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.045);
+}
+
+.overview-stat { position: relative; min-height: 160px; }
+.stat-icon { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 11px; font-weight: 800; }
+.stat-icon-teal { color: #118a7a; background: #e2f7f2; }
+.stat-icon-amber { color: #bd7a10; background: #fff3dc; }
+.stat-icon-blue { color: #3475d2; background: #e9f1ff; }
+.stat-icon-red { color: #d04b52; background: #ffebed; }
+.stat-label { margin: 1rem 0 0.15rem; color: #687b8c; font-size: 0.83rem; font-weight: 600; }
+.stat-value { margin: 0; color: #102f48; font-size: 2rem; font-weight: 750; letter-spacing: -0.04em; line-height: 1.15; }
+.stat-note { margin: 0.4rem 0 0; color: #8a9aa7; font-size: 0.75rem; }
+.panel-eyebrow { color: #718596; }
+.overview-panel h2 { color: #102f48; font-weight: 700; letter-spacing: -0.025em; }
+.sample-pill { padding: 0.38rem 0.58rem; border: 1px solid #f1dfb4; border-radius: 999px; color: #95640d; background: #fff8e8; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.07em; white-space: nowrap; }
+
+.oee-gauge-wrap { text-align: center; }
+.oee-gauge {
+  display: grid;
+  width: min(100%, 142px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--gauge-color) calc(var(--gauge-value) * 1%), #edf1f4 0);
+  position: relative;
+}
+.oee-gauge::before { position: absolute; inset: 9px; border-radius: 50%; background: #fff; content: ""; }
+.oee-gauge-center { z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.oee-gauge-center strong { color: #102f48; font-size: 1.8rem; letter-spacing: -0.04em; }
+.oee-gauge-center strong span { font-size: 0.95rem; }
+.oee-gauge-center small { color: #94a2ad; font-size: 0.68rem; }
+
+.overview-table { --bs-table-bg: transparent; box-shadow: none; }
+.overview-table thead th { padding: 0.65rem 0.55rem; color: #758795; background: transparent; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.overview-table tbody td { padding: 0.75rem 0.55rem; border-color: #edf1f4; }
+.issue-status { display: inline-block; padding: 0.32rem 0.55rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+.issue-status-open { color: #9a6406; background: #fff2d6; }
+.issue-status-progress { color: #2865b5; background: #e9f1ff; }
+.issue-status-review { color: #6653b4; background: #f0edff; }
+.issue-status-closed { color: #14816e; background: #e2f7f2; }
+.overview-empty { padding: 2rem 1rem; text-align: center; }
+.empty-mark { display: grid; width: 42px; height: 42px; margin: 0 auto 0.8rem; place-items: center; border-radius: 50%; color: #14816e; background: #e2f7f2; font-size: 1.2rem; font-weight: 800; }
+.overview-empty h3 { color: #102f48; }
+.status-row { margin-bottom: 1.15rem; color: #53697a; }
+.status-track { height: 7px; overflow: hidden; border-radius: 99px; background: #edf1f4; }
+.status-fill { height: 100%; min-width: 0; border-radius: inherit; }
+.areas-total { display: flex; align-items: center; gap: 0.75rem; padding: 0.9rem; border-radius: 12px; background: #f4f8fa; color: #183c55; }
+.areas-icon { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 10px; color: #118a7a; background: #e2f7f2; font-size: 1.25rem; }
+
+@media (max-width: 576px) {
+  .overview-stat { min-height: 150px; padding: 1rem; }
+  .overview-panel { padding: 1rem; }
+  .oee-gauge { width: min(100%, 120px); }
+  .oee-gauge-center strong { font-size: 1.55rem; }
+}
+
 
 
 /* ---------- Buttons (general) ---------- */

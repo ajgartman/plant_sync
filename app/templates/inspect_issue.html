@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{# Front End Logic done by Claude Code #}
+{% from "_formhelpers.html" import render_field %}
 
 {% block title %}Issue #{{ issue.id }}{% endblock %}
 
@@ -53,15 +53,15 @@
                 <div class="row g-4">
                     <div class="col-sm-6">
                         <h6 class="text-uppercase text-muted fw-semibold small mb-1">Submitted By</h6>
-                        <p class="fs-5 mb-0">{{ issue.submitted_by }}</p>
+                        <p class="fs-5 mb-0">{{ issue.submitted_by.username.capitalize() }}</p>
                     </div>
                     <div class="col-sm-6">
                         <h6 class="text-uppercase text-muted fw-semibold small mb-1">Completed By</h6>
-                        <p class="fs-5 mb-0">{{ issue.completed_by }}</p>
+                        <p class="fs-5 mb-0">{{ issue.completed_by or "Not completed" }}</p>
                     </div>
                     <div class="col-sm-6">
                         <h6 class="text-uppercase text-muted fw-semibold small mb-1">Area</h6>
-                        <p class="fs-5 mb-0">{{ issue.area }}</p>
+                        <p class="fs-5 mb-0">{{ issue.area.name }}</p>
                     </div>
                     <div class="col-sm-6">
                         <h6 class="text-uppercase text-muted fw-semibold small mb-1">Date Raised</h6>
@@ -81,6 +81,18 @@
                     </div>
                 </div>
             </div>
+
+            {% if can_manage %}
+                <div id="update" class="p-4 mt-4 bg-light rounded-4 shadow-sm">
+                    <h2 class="h4 mb-3">Update issue</h2>
+                    <form method="POST" action="{{ url_for('update_issue', issue_id=issue.id) }}">
+                        {{ form.csrf_token }}
+                        {{ render_field(form.status, "form-select") }}
+                        {{ render_field(form.completed_by) }}
+                        {{ form.submit(class="btn btn-primary") }}
+                    </form>
+                </div>
+            {% endif %}
 
         </div>
     </div>
